@@ -53,7 +53,7 @@ public class Team8SortCompetition extends SortCompetition {
 				temp[count[a[i].charAt(l)]++] = a[i];
 			System.arraycopy(temp, 0, a, 0, 10000); // copy back
 		}
-		return binarySearch(a, query);
+		return linearSearch(a, query);
 	}
 
 	/**
@@ -274,18 +274,10 @@ public class Team8SortCompetition extends SortCompetition {
 	 *            the obj to search
 	 * @return the index of obj
 	 */
-	private int binarySearch(Comparable[] arr, Comparable obj) {
-		int l = 0;
-		int r = arr.length - 1;
-		while (l <= r) {
-			int m = l + (r - l) / 2;
-			if (arr[m].compareTo(obj) == 0) {
-				return m;
-			}
-			if (arr[m].compareTo(obj) < 0) {
-				l = m + 1;
-			} else {
-				r = m - 1;
+	private int linearSearch(Comparable[] arr, Comparable obj) {
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i].compareTo(obj) == 0) {
+				return i;
 			}
 		}
 		return -1;
@@ -346,7 +338,7 @@ public class Team8SortCompetition extends SortCompetition {
 		// merge back
 		merge(arr, 0, mid, arr.length - 1);
 		// find index of query
-		return binarySearch(arr, query);
+		return linearSearch(arr, query);
 	}
 
 	@Override
